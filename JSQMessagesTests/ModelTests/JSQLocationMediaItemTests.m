@@ -12,7 +12,6 @@
 
 #import "JSQLocationMediaItem.h"
 
-#import <MobileCoreServices/UTCoreTypes.h>
 
 @interface JSQLocationMediaItemTests : XCTestCase
 
@@ -60,16 +59,6 @@
     }];
     
     XCTAssertNotNil([item mediaView], @"Media view should NOT be nil once item has media data");
-}
-
-- (void)testCopyableItemInMediaProtocol {
-    JSQLocationMediaItem *item = [[JSQLocationMediaItem alloc] initWithLocation:self.location];
-    XCTAssertNotNil(item);
-    
-    XCTAssertEqualObjects((NSString *)kUTTypeURL, [item mediaDataType]);
-
-    NSURL *locationURL = [[NSURL alloc] initWithString:@"http://maps.apple.com/?ll=37.795313,-122.393757&z=18&q=%20"];
-    XCTAssertEqualObjects(locationURL, [item mediaData]);
 }
 
 @end

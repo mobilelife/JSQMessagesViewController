@@ -18,13 +18,13 @@
 
 #import "NSUserDefaults+DemoSettings.h"
 
-static NSString * const kSettingExtraMessages           = @"kSettingExtraMessages";
-static NSString * const kSettingLongMessage             = @"kSettingLongMessage";
-static NSString * const kSettingEmptyMessages           = @"kSettingEmptyMessages";
-static NSString * const kSettingSpringiness             = @"kSettingSpringiness";
-static NSString * const kSettingIncomingAvatar          = @"kSettingIncomingAvatar";
-static NSString * const kSettingOutgoingAvatar          = @"kSettingOutgoingAvatar";
-static NSString * const kSettingAccessoryButtonForMedia = @"kSettingAccessoryButtonForMedia";
+static NSString * const kSettingExtraMessages = @"kSettingExtraMessages";
+static NSString * const kSettingLongMessage = @"kSettingLongMessage";
+static NSString * const kSettingEmptyMessages = @"kSettingEmptyMessages";
+static NSString * const kSettingSpringiness = @"kSettingSpringiness";
+static NSString * const kSettingIncomingAvatar = @"kSettingIncomingAvatar";
+static NSString * const kSettingOutgoingAvatar = @"kSettingOutgoingAvatar";
+
 
 @implementation NSUserDefaults (DemoSettings)
 
@@ -88,13 +88,4 @@ static NSString * const kSettingAccessoryButtonForMedia = @"kSettingAccessoryBut
     return [[NSUserDefaults standardUserDefaults] boolForKey:kSettingIncomingAvatar];
 }
 
-+ (BOOL)accessoryButtonForMediaMessages
-{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kSettingAccessoryButtonForMedia];
-}
-
-+ (void)saveAccessoryButtonForMediaMessages:(BOOL)value
-{
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:kSettingAccessoryButtonForMedia];
-}
 @end

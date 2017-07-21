@@ -4,10 +4,9 @@
  use_frameworks!
 
 target 'SwiftExample' do
-pod 'JSQMessagesViewController', :path => '../'
+
+pod 'JSQMessagesViewController'
+
 
 end
 
-target 'SwiftExampleTests' do
-pod 'JSQMessagesViewController', :path => '../'
-end

@@ -19,6 +19,8 @@ Pod::Spec.new do |s|
 
 	s.resources = ['JSQMessagesViewController/Assets/JSQMessagesAssets.bundle', 'JSQMessagesViewController/**/*.{xib}']
 
-	s.frameworks = 'QuartzCore', 'CoreGraphics', 'CoreLocation', 'MapKit', 'MobileCoreServices', 'AVFoundation'
+	s.frameworks = 'QuartzCore', 'CoreGraphics', 'CoreLocation', 'MapKit', 'AVFoundation'
 	s.requires_arc = true
+
+	s.dependency 'JSQSystemSoundPlayer', '~> 2.0.1'
 end

@@ -38,7 +38,4 @@
 + (void)saveIncomingAvatarSetting:(BOOL)value;
 + (BOOL)incomingAvatarSetting;
 
-+ (void)saveAccessoryButtonForMediaMessages:(BOOL)value;
-+ (BOOL)accessoryButtonForMediaMessages;
-
 @end
