@@ -46,6 +46,8 @@
     XCTAssertNotNil(nib, @"Nib should not be nil");
     
     JSQMessagesViewController *vc = [JSQMessagesViewController messagesViewController];
+    vc.senderId = @"senderId";
+    vc.senderDisplayName = @"senderDisplayName";
 
     [vc beginAppearanceTransition:YES animated:NO];
     [vc endAppearanceTransition];
@@ -67,6 +69,8 @@
 - (void)testJSQMessagesViewControllerSubclassInitProgramatically
 {
     DemoMessagesViewController *demoVC = [DemoMessagesViewController messagesViewController];
+    demoVC.senderId = @"senderId";
+    demoVC.senderDisplayName = @"senderDisplayName";
 
     [demoVC beginAppearanceTransition:YES animated:NO];
     [demoVC endAppearanceTransition];
@@ -84,6 +88,8 @@
     XCTAssertNotNil(mainSB, @"Storyboard should not be nil");
     
     DemoMessagesViewController *demoVC = [mainSB instantiateViewControllerWithIdentifier:@"DemoVC"];
+    demoVC.senderId = @"senderId";
+    demoVC.senderDisplayName = @"senderDisplayName";
 
     [demoVC beginAppearanceTransition:YES animated:NO];
     [demoVC endAppearanceTransition];
