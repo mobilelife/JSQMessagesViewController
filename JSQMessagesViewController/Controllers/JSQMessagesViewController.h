@@ -127,6 +127,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (copy, nonatomic) NSString *incomingMediaCellIdentifier;
 
+@property (copy, nonatomic) NSString *incomingPaginatedCellIdentifier;
+
 /**
  *  Specifies whether or not the view controller should show the typing indicator for an incoming message.
  *

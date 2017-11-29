@@ -503,31 +503,38 @@ static void JSQInstallWorkaroundForSheetPresentationIssue26295020(void) {
 
     BOOL isOutgoingMessage = [self isOutgoingMessage:messageItem];
     BOOL isMediaMessage = [messageItem isMediaMessage];
+    BOOL isPaginatedMessage = [messageItem isPaginatedMessage];
 
     NSString *cellIdentifier = nil;
-    if (isMediaMessage) {
-        cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
-    }
-    else {
-        cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
+    if (isPaginatedMessage) {
+        cellIdentifier = self.incomingPaginatedCellIdentifier;
+    } else {
+        if (isMediaMessage) {
+            cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
+        }
+        else {
+            cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
+        }
     }
 
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.accessibilityIdentifier = [NSString stringWithFormat:@"(%ld, %ld)", (long)indexPath.section, (long)indexPath.row];
     cell.delegate = collectionView;
-
-    if (!isMediaMessage) {
-        cell.textView.text = [messageItem text];
-        NSParameterAssert(cell.textView.text != nil);
-
-        id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
-        cell.messageBubbleImageView.image = [bubbleImageDataSource messageBubbleImage];
-        cell.messageBubbleImageView.highlightedImage = [bubbleImageDataSource messageBubbleHighlightedImage];
-    }
-    else {
-        id<JSQMessageMediaData> messageMedia = [messageItem media];
-        cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
-        NSParameterAssert(cell.mediaView != nil);
+    
+    if (!isPaginatedMessage) {
+        if (!isMediaMessage) {
+            cell.textView.text = [messageItem text];         
+            NSParameterAssert(cell.textView.text != nil);
+            
+            id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
+            cell.messageBubbleImageView.image = [bubbleImageDataSource messageBubbleImage];
+            cell.messageBubbleImageView.highlightedImage = [bubbleImageDataSource messageBubbleHighlightedImage];
+        } 
+        else {
+            id<JSQMessageMediaData> messageMedia = [messageItem media];
+            cell.mediaView = [messageMedia mediaView] ?: [messageMedia mediaPlaceholderView];
+            NSParameterAssert(cell.mediaView != nil);
+        }
     }
 
     BOOL needsAvatar = YES;
