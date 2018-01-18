@@ -92,6 +92,7 @@
  *  including `collectionView:cellForItemAtIndexPath:`.
  */
 @property (copy, nonatomic) NSString *outgoingCellIdentifier;
+@property (copy, nonatomic) NSString *outgoingRatingCellIdentifier;
 
 /**
  *  The collection view cell identifier to use for dequeuing outgoing message collection view cells
@@ -128,6 +129,8 @@
  *  including `collectionView:cellForItemAtIndexPath:`.
  */
 @property (copy, nonatomic) NSString *incomingCellIdentifier;
+@property (copy, nonatomic) NSString *incomingPaginatedCellIdentifier;
+@property (copy, nonatomic) NSString *incomingRatingCellIdentifier;
 
 /**
  *  The collection view cell identifier to use for dequeuing incoming message collection view cells 

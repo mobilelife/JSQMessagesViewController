@@ -540,17 +540,27 @@ JSQMessagesKeyboardControllerDelegate>
 {
     id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
     NSParameterAssert(messageItem != nil);
-
+	
     BOOL isOutgoingMessage = [self isOutgoingMessage:messageItem];
     BOOL isMediaMessage = [messageItem isMediaMessage];
-
-    NSString *cellIdentifier = nil;
-    if (isMediaMessage) {
-        cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
-    }
-    else {
-        cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
-    }
+	NSString *cellIdentifier = nil;
+	
+	if (isMediaMessage) {
+		cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
+	}
+	else {
+		switch (messageItem.type) {
+			case JSQMessageTypePaginated:
+				cellIdentifier = self.incomingPaginatedCellIdentifier;
+				break;
+			case JSQMessageTypeRating:
+				cellIdentifier = isOutgoingMessage ? self.outgoingRatingCellIdentifier : self.incomingRatingCellIdentifier;
+				break;
+			default:
+				cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
+				break;
+		}
+	}
 
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = collectionView;

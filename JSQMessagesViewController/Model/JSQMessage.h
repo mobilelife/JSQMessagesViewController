@@ -57,6 +57,9 @@
  */
 @property (copy, nonatomic, readonly) NSString *text;
 
+
+@property (nonatomic, readonly) JSQMessageType type;
+
 /**
  *  Returns the media item attachment of the message, or `nil` if the message is not a media message.
  *  That is, if `isMediaMessage` is equal to `NO` then this value will be `nil`.

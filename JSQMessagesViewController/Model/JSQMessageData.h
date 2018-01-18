@@ -20,6 +20,13 @@
 
 #import "JSQMessageMediaData.h"
 
+typedef NS_ENUM(NSInteger, JSQMessageType)
+{
+	JSQMessageTypeDefault,
+	JSQMessageTypePaginated,
+	JSQMessageTypeRating
+};
+
 /**
  *  The `JSQMessageData` protocol defines the common interface through which 
  *  a `JSQMessagesViewController` and `JSQMessagesCollectionView` interact with message model objects.
@@ -58,6 +65,8 @@
  *  @warning You must not return `nil` from this method.
  */
 - (NSDate *)date;
+
+- (JSQMessageType) type;
 
 /**
  *  This method is used to determine if the message data item contains text or media.
